@@ -1,0 +1,214 @@
+<!-- Blog Page Container -->
+<div class="blog-page">
+  <!-- Shared Navbar -->
+  <app-navbar currentPage="blog"></app-navbar>
+
+  <!-- Header Section -->
+  <div class="blog-header">
+    <div class="container">
+      <h1 class="blog-title">Blog</h1>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="blog-content">
+    <div class="container">
+      <div class="row">
+        <!-- Sidebar with Filters -->
+        <div class="col-md-3">
+          <div class="blog-sidebar">
+            <!-- Search Bar -->
+            <div class="search-section">
+              <div class="search-container">
+                <input 
+                  type="text" 
+                  class="form-control search-input" 
+                  placeholder="Buscar artículos..."
+                  (input)="onSearch($event)"
+                  [value]="searchTerm">
+                <i class="fas fa-search search-icon"></i>
+              </div>
+            </div>
+
+            <!-- Filter Section -->
+            <div class="filter-section">
+              <h5 class="filter-title">Filtros de Búsqueda</h5>
+              
+              <!-- Date Filter -->
+              <div class="filter-group">
+                <label class="filter-label">Fecha</label>
+                <select class="form-select filter-select" [(ngModel)]="selectedDate">
+                  <option value="">Todas las fechas</option>
+                  <option value="2024-01">Enero 2024</option>
+                  <option value="2024-02">Febrero 2024</option>
+                  <option value="2024-03">Marzo 2024</option>
+                </select>
+              </div>
+
+              <!-- Category Filter -->
+              <div class="filter-group">
+                <label class="filter-label">Tipo de Caso</label>
+                <select class="form-select filter-select" [(ngModel)]="selectedCategory">
+                  <option value="">Todas las categorías</option>
+                  <option value="Derecho Familiar">Derecho Familiar</option>
+                  <option value="Derecho Comercial">Derecho Comercial</option>
+                  <option value="Derecho Penal">Derecho Penal</option>
+                  <option value="Derecho Laboral">Derecho Laboral</option>
+                  <option value="Derecho Civil">Derecho Civil</option>
+                  <option value="Derecho Constitucional">Derecho Constitucional</option>
+                </select>
+              </div>
+
+              <!-- More Filters Indicator -->
+              <div class="more-filters">
+                <span>...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Blog Content -->
+        <div class="col-md-9">
+          <!-- Recommendations Section -->
+          <div class="recommendations-section">
+            <h3 class="section-title">Recomendaciones</h3>
+            <p class="section-subtitle">Subidos Recientemente</p>
+
+            <!-- Featured Post -->
+            <div class="featured-post" *ngIf="featuredPost">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="featured-image">
+                    <img [src]="featuredPost.image" [alt]="featuredPost.title" 
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <div class="image-placeholder">
+                      <i class="fas fa-gavel"></i>
+                    </div>
+                    <div class="play-button">
+                      <i class="fas fa-play"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="featured-content">
+                    <h4 class="featured-title">{{ featuredPost.title }}</h4>
+                    <p class="featured-description">{{ featuredPost.description }}</p>
+                    <div class="featured-meta">
+                      <span class="category-tag">{{ featuredPost.category }}</span>
+                      <span class="date-tag">{{ featuredPost.date | date:'dd/MM/yyyy' }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Regular Posts Grid -->
+            <div class="posts-grid">
+              <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4" *ngFor="let post of regularPosts">
+                  <div class="blog-card">
+                    <div class="blog-card-image">
+                      <img [src]="post.image" [alt]="post.title" 
+                           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                      <div class="image-placeholder">
+                        <i class="fas fa-newspaper"></i>
+                      </div>
+                    </div>
+                    <div class="blog-card-content">
+                      <h5 class="blog-card-title">{{ post.title }}</h5>
+                      <p class="blog-card-description">{{ post.description }}</p>
+                      <div class="blog-card-meta">
+                        <span class="category">{{ post.category }}</span>
+                        <span class="date">{{ post.date | date:'dd/MM/yyyy' }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- No Results Message -->
+            <div class="no-results" *ngIf="filteredPosts.length === 0">
+              <div class="text-center py-5">
+                <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                <h4>No se encontraron resultados</h4>
+                <p class="text-muted">Intenta ajustar los filtros de búsqueda</p>
+                <button class="btn btn-primary" (click)="clearFilters()">Limpiar Filtros</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer-blue py-4">
+  <div class="container">
+    <!-- Main Footer Content -->
+    <div class="row align-items-center">
+      <!-- Contact Information -->
+      <div class="col-md-4 text-start">
+        <div class="footer-contact-item d-flex align-items-center mb-2">
+          <div class="footer-icon-circle me-3">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <div>
+            <span class="footer-text">Carrera 15 #93-47, Oficina 502</span><br>
+            <span class="footer-text">Bogotá D.C., Colombia</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-4 text-start">
+        <div class="footer-contact-item d-flex align-items-center mb-2">
+          <div class="footer-icon-circle me-3">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div>
+            <span class="footer-text">info&#64;pravdasaga.com</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-4 text-start">
+        <div class="footer-contact-item d-flex align-items-center mb-2">
+          <div class="footer-icon-circle me-3">
+            <i class="fas fa-phone"></i>
+          </div>
+          <div>
+            <span class="footer-text">+57 310 987-6543</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Social Media Icons -->
+    <div class="row mt-3">
+      <div class="col-12 text-end">
+        <div class="footer-social-icons">
+          <a href="#" class="footer-social-link me-3">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+          <a href="#" class="footer-social-link me-3">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" class="footer-social-link">
+            <i class="fab fa-instagram"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Footer -->
+    <div class="footer-bottom mt-4 pt-3">
+      <div class="row">
+        <div class="col-12 text-center">
+          <p class="footer-copyright mb-1">© 2024 Pravda Saga Abogados & Académicos. Todos los derechos reservados. Licencia Profesional No. 12345 - Consejo Superior de la Judicatura</p>
+          <p class="footer-hours mb-0">Horario de Atención: Lun - Vie: 8:00 AM - 6:00 PM</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
