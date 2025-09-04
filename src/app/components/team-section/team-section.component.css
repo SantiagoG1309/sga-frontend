@@ -97,19 +97,20 @@
 /* Team Member Card */
 .team-member {
   flex: 0 0 calc(33.333% - 1.333rem);
-  background: white;
+  background: transparent;
+  border: none;
   border-radius: 20px;
   padding: 1.5rem;
   text-align: center;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: none;
   transition: all 0.3s ease;
-  border: 3px solid transparent;
 }
 
 .team-member:hover {
   transform: translateY(-10px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-  border-color: var(--primary-gold);
+  background: transparent;
+  box-shadow: none;
+  border: none;
 }
 
 /* Member Image */
@@ -127,10 +128,13 @@
   padding: 3px;
   background: white;
   transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .team-member:hover .member-image {
   transform: scale(1.05);
+  border-color: #b8941f;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
 /* Member Details */
@@ -139,10 +143,11 @@
   font-weight: 700;
   color: var(--dark-blue);
   margin-bottom: 0.5rem;
+  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.9);
 }
 
 .member-badge {
-  background: var(--primary-gold);
+  background: linear-gradient(135deg, var(--primary-gold), #b8941f);
   color: white;
   padding: 0.3rem 1rem;
   border-radius: 15px;
@@ -150,6 +155,7 @@
   font-weight: 600;
   display: inline-block;
   margin-bottom: 1rem;
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
 }
 
 .member-specialty {
@@ -157,12 +163,14 @@
   color: var(--dark-blue);
   font-weight: 600;
   margin-bottom: 0.5rem;
+  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.9);
 }
 
 .member-experience {
   font-size: 0.9rem;
-  color: var(--text-light);
+  color: #2d3748;
   margin-bottom: 0;
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8);
 }
 
 /* Carousel Indicators */

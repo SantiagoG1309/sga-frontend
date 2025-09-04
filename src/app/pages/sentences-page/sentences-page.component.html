@@ -1,0 +1,126 @@
+<div class="sentences-page">
+  <div class="container">
+    <!-- Header Section -->
+    <div class="sentences-header">
+      <h1 class="sentences-title">Casos Exitosos Recientes</h1>
+      <p class="sentences-subtitle">
+        Nuestra experiencia se refleja en los resultados obtenidos. Conoce algunos de 
+        nuestros casos más representativos y exitosos en diferentes áreas del derecho.
+      </p>
+    </div>
+
+    <!-- Statistics Section -->
+    <div class="statistics-section">
+      <div class="stats-grid">
+        <div class="stat-card" *ngFor="let stat of statistics" [ngClass]="'stat-' + stat.color">
+          <div class="stat-icon">
+            <i [class]="stat.icon"></i>
+          </div>
+          <div class="stat-content">
+            <h3 class="stat-value">{{ stat.value }}</h3>
+            <p class="stat-label">{{ stat.label }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Search and Filters Section -->
+    <div class="search-filters">
+      <div class="search-container">
+        <input 
+          type="text" 
+          class="search-input" 
+          placeholder="Buscar por título, descripción o tipo de caso..."
+          [(ngModel)]="searchTerm"
+          (input)="onSearch()"
+        >
+        <button class="search-btn">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+      
+      <div class="filters-container">
+        <select 
+          class="filter-select" 
+          [(ngModel)]="selectedType"
+          (change)="onFilterChange()"
+        >
+          <option value="">Todos los tipos</option>
+          <option *ngFor="let type of sentenceTypes" [value]="type">{{ type }}</option>
+        </select>
+        
+        <button class="reset-btn" (click)="resetFilters()">
+          <i class="fas fa-undo"></i> Limpiar Filtros
+        </button>
+      </div>
+    </div>
+
+    <!-- Sentences Grid -->
+    <div class="sentences-grid">
+      <div class="sentence-card" *ngFor="let sentence of paginatedSentences">
+        <div class="sentence-header">
+          <div class="sentence-meta">
+            <span class="sentence-id">{{ sentence.id }}</span>
+            <span class="sentence-status" [ngClass]="sentence.status.toLowerCase()">
+              {{ sentence.status }}
+            </span>
+          </div>
+          <div class="sentence-type">{{ sentence.type }}</div>
+        </div>
+        
+        <div class="sentence-content">
+          <h3 class="sentence-title">{{ sentence.title }}</h3>
+          <div class="sentence-details">
+            <div class="detail-item">
+              <i class="fas fa-building"></i>
+              <span>{{ sentence.court }}</span>
+            </div>
+            <div class="detail-item">
+              <i class="fas fa-calendar"></i>
+              <span>{{ sentence.date }}</span>
+            </div>
+          </div>
+          <p class="sentence-description">{{ sentence.description }}</p>
+          
+          <div class="sentence-impact">
+            <strong>Impacto:</strong>
+            <p>{{ sentence.impact }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination" *ngIf="totalPages > 1">
+      <button 
+        class="pagination-btn" 
+        [disabled]="currentPage === 1"
+        (click)="changePage(currentPage - 1)"
+      >
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      
+      <span class="pagination-info">
+        Página {{ currentPage }} de {{ totalPages }}
+      </span>
+      
+      <button 
+        class="pagination-btn"
+        [disabled]="currentPage === totalPages"
+        (click)="changePage(currentPage + 1)"
+      >
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+
+    <!-- No Results Message -->
+    <div class="no-results" *ngIf="filteredSentences.length === 0">
+      <i class="fas fa-search"></i>
+      <h3>No se encontraron casos</h3>
+      <p>Intenta modificar los filtros de búsqueda</p>
+      <button class="reset-btn" (click)="resetFilters()">
+        <i class="fas fa-undo"></i> Limpiar Filtros
+      </button>
+    </div>
+  </div>
+</div>
