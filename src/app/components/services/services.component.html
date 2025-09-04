@@ -1,0 +1,454 @@
+<section id="services" class="services-section bg-section bg-services">
+  <div class="container">
+    <div class="section-header text-center">
+      <h2 class="section-title">Nuestros Servicios Legales</h2>
+      <p class="section-subtitle">Brindamos asesoría especializada en múltiples áreas del derecho</p>
+    </div>
+    
+    <div class="services-grid">
+      <!-- Servicio 1: Derecho Penal -->
+      <div class="service-card">
+        <button class="service-button" (click)="openModal(1)">
+          <i class="fas fa-gavel"></i>
+          <span>Derecho Penal</span>
+        </button>
+      </div>
+
+      <!-- Servicio 2: Derecho Civil -->
+      <div class="service-card">
+        <button class="service-button" (click)="openModal(2)">
+          <i class="fas fa-balance-scale"></i>
+          <span>Derecho Civil</span>
+        </button>
+      </div>
+
+      <!-- Servicio 3: Derecho de Familia -->
+      <div class="service-card">
+        <button class="service-button" (click)="openModal(3)">
+          <i class="fas fa-users"></i>
+          <span>Derecho de Familia</span>
+        </button>
+      </div>
+
+      <!-- Servicio 4: Seguros y Reclamación de Pólizas -->
+      <div class="service-card">
+        <button class="service-button" (click)="openModal(4)">
+          <i class="fas fa-shield-alt"></i>
+          <span>Seguros y Reclamación de Pólizas</span>
+        </button>
+      </div>
+
+      <!-- Servicio 5: Propiedad Horizontal -->
+      <div class="service-card">
+        <button class="service-button" (click)="openModal(5)">
+          <i class="fas fa-building"></i>
+          <span>Propiedad Horizontal</span>
+        </button>
+      </div>
+
+      <!-- Servicio 6: Derecho Laboral -->
+      <div class="service-card">
+        <button class="service-button" (click)="openModal(6)">
+          <i class="fas fa-handshake"></i>
+          <span>Derecho Laboral</span>
+        </button>
+      </div>
+
+      <!-- Servicio 7: Seguridad Social y Pensiones -->
+      <div class="service-card">
+        <button class="service-button" (click)="openModal(7)">
+          <i class="fas fa-user-shield"></i>
+          <span>Seguridad Social y Pensiones</span>
+        </button>
+      </div>
+
+      <!-- Servicio 8: Asesoría Empresarial -->
+      <div class="service-card">
+        <button class="service-button" (click)="openModal(8)">
+          <i class="fas fa-briefcase"></i>
+          <span>Asesoría Empresarial</span>
+        </button>
+      </div>
+
+      <!-- Servicio 9: Recaudo de Cartera -->
+      <div class="service-card">
+        <button class="service-button" (click)="openModal(9)">
+          <i class="fas fa-file-invoice-dollar"></i>
+          <span>Recaudo de Cartera</span>
+        </button>
+      </div>
+
+      <!-- Servicio 10: Acciones de Tutela -->
+      <div class="service-card">
+        <button class="service-button" (click)="openModal(10)">
+          <i class="fas fa-gavel"></i>
+          <span>Acciones de Tutela</span>
+        </button>
+      </div>
+
+      <!-- Servicio 11: MASC -->
+      <div class="service-card">
+        <button class="service-button" (click)="openModal(11)">
+          <i class="fas fa-handshake"></i>
+          <span>MASC</span>
+        </button>
+      </div>
+
+      <!-- Servicio 12: Insolvencia de Persona Natural No Comerciante -->
+      <div class="service-card">
+        <button class="service-button" (click)="openModal(12)">
+          <i class="fas fa-user-times"></i>
+          <span>Insolvencia de Persona Natural No Comerciante</span>
+        </button>
+      </div>
+
+      <!-- Servicio 13: Expertos en Remates Judiciales -->
+      <div class="service-card">
+        <button class="service-button" (click)="openModal(13)">
+          <i class="fas fa-hammer"></i>
+          <span>Expertos en Remates Judiciales</span>
+        </button>
+      </div>
+
+      <!-- Servicio 14: Trámites Notariales -->
+      <div class="service-card">
+        <button class="service-button" (click)="openModal(14)">
+          <i class="fas fa-stamp"></i>
+          <span>Trámites Notariales</span>
+        </button>
+      </div>
+
+      <!-- Servicio 15: Defensa Integral en Derechos del Consumidor -->
+      <div class="service-card">
+        <button class="service-button" (click)="openModal(15)">
+          <i class="fas fa-shopping-cart"></i>
+          <span>Defensa Integral en Derechos del Consumidor</span>
+        </button>
+      </div>
+
+      <!-- Servicio 16: Litigios contra Constructoras -->
+      <div class="service-card">
+        <button class="service-button" (click)="openModal(16)">
+          <i class="fas fa-hard-hat"></i>
+          <span>Litigios contra Constructoras</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Overlay -->
+  <div class="modal-overlay" [class.active]="activeModal !== null" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()" [class.active]="activeModal !== null">
+      <button class="modal-close" (click)="closeModal()">
+        <i class="fas fa-times"></i>
+      </button>
+      
+      <div class="modal-body" [ngSwitch]="activeModal">
+        <!-- Modal Content for each service -->
+        <div *ngSwitchCase="1" class="service-modal">
+          <div class="modal-header">
+            <i class="fas fa-gavel"></i>
+            <h3>Derecho Penal</h3>
+          </div>
+          <div class="modal-description">
+            <p>Defensa penal especializada en procesos criminales e investigaciones judiciales. Nuestro equipo cuenta con amplia experiencia en la defensa de derechos fundamentales en el ámbito penal.</p>
+          </div>
+          <div class="modal-services">
+            <h4>Servicios Incluidos:</h4>
+            <ul>
+              <li><i class="fas fa-check"></i> Defensa criminal</li>
+              <li><i class="fas fa-check"></i> Investigaciones penales</li>
+              <li><i class="fas fa-check"></i> Derecho penal económico</li>
+              <li><i class="fas fa-check"></i> Recursos y apelaciones</li>
+            </ul>
+          </div>
+        </div>
+
+        <div *ngSwitchCase="2" class="service-modal">
+          <div class="modal-header">
+            <i class="fas fa-balance-scale"></i>
+            <h3>Derecho Civil</h3>
+          </div>
+          <div class="modal-description">
+            <p>Asesoría completa en derecho civil, contratos y responsabilidad civil. Brindamos soluciones efectivas para sus asuntos civiles y contractuales.</p>
+          </div>
+          <div class="modal-services">
+            <h4>Servicios Incluidos:</h4>
+            <ul>
+              <li><i class="fas fa-check"></i> Contratos civiles</li>
+              <li><i class="fas fa-check"></i> Responsabilidad civil</li>
+              <li><i class="fas fa-check"></i> Derecho de obligaciones</li>
+              <li><i class="fas fa-check"></i> Mediación y arbitraje</li>
+            </ul>
+          </div>
+        </div>
+
+        <div *ngSwitchCase="3" class="service-modal">
+          <div class="modal-header">
+            <i class="fas fa-users"></i>
+            <h3>Derecho de Familia</h3>
+          </div>
+          <div class="modal-description">
+            <p>Asesoría especializada en asuntos familiares y relaciones personales. Manejamos con sensibilidad y profesionalismo todos los aspectos del derecho de familia.</p>
+          </div>
+          <div class="modal-services">
+            <h4>Servicios Incluidos:</h4>
+            <ul>
+              <li><i class="fas fa-check"></i> Divorcios y separaciones</li>
+              <li><i class="fas fa-check"></i> Custodia de menores</li>
+              <li><i class="fas fa-check"></i> Pensiones alimentarias</li>
+              <li><i class="fas fa-check"></i> Adopciones</li>
+            </ul>
+          </div>
+        </div>
+
+        <div *ngSwitchCase="4" class="service-modal">
+          <div class="modal-header">
+            <i class="fas fa-shield-alt"></i>
+            <h3>Seguros y Reclamación de Pólizas</h3>
+          </div>
+          <div class="modal-description">
+            <p>Especialistas en reclamaciones de seguros y defensa de derechos de asegurados. Garantizamos el cumplimiento de las obligaciones de las aseguradoras.</p>
+          </div>
+          <div class="modal-services">
+            <h4>Servicios Incluidos:</h4>
+            <ul>
+              <li><i class="fas fa-check"></i> Reclamación de seguros</li>
+              <li><i class="fas fa-check"></i> Defensa ante aseguradoras</li>
+              <li><i class="fas fa-check"></i> Seguros de vida</li>
+              <li><i class="fas fa-check"></i> Seguros de daños</li>
+            </ul>
+          </div>
+        </div>
+
+        <div *ngSwitchCase="5" class="service-modal">
+          <div class="modal-header">
+            <i class="fas fa-building"></i>
+            <h3>Propiedad Horizontal</h3>
+          </div>
+          <div class="modal-description">
+            <p>Asesoría legal en administración y conflictos de propiedad horizontal. Resolvemos efectivamente los conflictos entre copropietarios y administradores.</p>
+          </div>
+          <div class="modal-services">
+            <h4>Servicios Incluidos:</h4>
+            <ul>
+              <li><i class="fas fa-check"></i> Administración de edificios</li>
+              <li><i class="fas fa-check"></i> Conflictos entre propietarios</li>
+              <li><i class="fas fa-check"></i> Reformas y obras</li>
+              <li><i class="fas fa-check"></i> Asambleas de copropietarios</li>
+            </ul>
+          </div>
+        </div>
+
+        <div *ngSwitchCase="6" class="service-modal">
+          <div class="modal-header">
+            <i class="fas fa-handshake"></i>
+            <h3>Derecho Laboral</h3>
+          </div>
+          <div class="modal-description">
+            <p>Defensa de los derechos de trabajadores y empresas en todos los aspectos laborales. Protegemos sus derechos en el ámbito del trabajo.</p>
+          </div>
+          <div class="modal-services">
+            <h4>Servicios Incluidos:</h4>
+            <ul>
+              <li><i class="fas fa-check"></i> Despidos e indemnizaciones</li>
+              <li><i class="fas fa-check"></i> Acoso laboral</li>
+              <li><i class="fas fa-check"></i> Contratos de trabajo</li>
+              <li><i class="fas fa-check"></i> Seguridad social</li>
+            </ul>
+          </div>
+        </div>
+
+        <div *ngSwitchCase="7" class="service-modal">
+          <div class="modal-header">
+            <i class="fas fa-user-shield"></i>
+            <h3>Seguridad Social y Pensiones</h3>
+          </div>
+          <div class="modal-description">
+            <p>Asesoría especializada en pensiones y prestaciones de seguridad social. Garantizamos el acceso a sus derechos pensionales y prestacionales.</p>
+          </div>
+          <div class="modal-services">
+            <h4>Servicios Incluidos:</h4>
+            <ul>
+              <li><i class="fas fa-check"></i> Pensiones de jubilación</li>
+              <li><i class="fas fa-check"></i> Pensiones de invalidez</li>
+              <li><i class="fas fa-check"></i> Prestaciones por desempleo</li>
+              <li><i class="fas fa-check"></i> Incapacidades laborales</li>
+            </ul>
+          </div>
+        </div>
+
+        <div *ngSwitchCase="8" class="service-modal">
+          <div class="modal-header">
+            <i class="fas fa-briefcase"></i>
+            <h3>Asesoría Empresarial</h3>
+          </div>
+          <div class="modal-description">
+            <p>Asesoría integral para empresas en constitución, operación y reestructuración. Acompañamos el crecimiento y desarrollo de su empresa.</p>
+          </div>
+          <div class="modal-services">
+            <h4>Servicios Incluidos:</h4>
+            <ul>
+              <li><i class="fas fa-check"></i> Constitución de sociedades</li>
+              <li><i class="fas fa-check"></i> Contratos empresariales</li>
+              <li><i class="fas fa-check"></i> Fusiones y adquisiciones</li>
+              <li><i class="fas fa-check"></i> Compliance corporativo</li>
+            </ul>
+          </div>
+        </div>
+
+        <div *ngSwitchCase="9" class="service-modal">
+          <div class="modal-header">
+            <i class="fas fa-file-invoice-dollar"></i>
+            <h3>Recaudo de Cartera</h3>
+          </div>
+          <div class="modal-description">
+            <p>Servicios especializados en recuperación de carteras vencidas y cobro judicial. Maximizamos la recuperación de sus créditos vencidos.</p>
+          </div>
+          <div class="modal-services">
+            <h4>Servicios Incluidos:</h4>
+            <ul>
+              <li><i class="fas fa-check"></i> Cobro prejudicial</li>
+              <li><i class="fas fa-check"></i> Procesos ejecutivos</li>
+              <li><i class="fas fa-check"></i> Recuperación de cartera</li>
+              <li><i class="fas fa-check"></i> Asesoría en cobranzas</li>
+            </ul>
+          </div>
+        </div>
+
+        <div *ngSwitchCase="10" class="service-modal">
+          <div class="modal-header">
+            <i class="fas fa-gavel"></i>
+            <h3>Acciones de Tutela</h3>
+          </div>
+          <div class="modal-description">
+            <p>Protección de derechos fundamentales a través de acciones de tutela. Defendemos sus derechos constitucionales con efectividad y celeridad.</p>
+          </div>
+          <div class="modal-services">
+            <h4>Servicios Incluidos:</h4>
+            <ul>
+              <li><i class="fas fa-check"></i> Derechos fundamentales</li>
+              <li><i class="fas fa-check"></i> Acciones constitucionales</li>
+              <li><i class="fas fa-check"></i> Protección inmediata</li>
+              <li><i class="fas fa-check"></i> Defensa de garantías</li>
+            </ul>
+          </div>
+        </div>
+
+        <div *ngSwitchCase="11" class="service-modal">
+          <div class="modal-header">
+            <i class="fas fa-handshake"></i>
+            <h3>Métodos Alternativos de Solución de Conflictos</h3>
+          </div>
+          <div class="modal-description">
+            <p>Resolución alternativa de conflictos a través de mediación y arbitraje. Ofrecemos soluciones rápidas y efectivas sin necesidad de litigio.</p>
+          </div>
+          <div class="modal-services">
+            <h4>Servicios Incluidos:</h4>
+            <ul>
+              <li><i class="fas fa-check"></i> Mediación</li>
+              <li><i class="fas fa-check"></i> Arbitraje</li>
+              <li><i class="fas fa-check"></i> Conciliación</li>
+              <li><i class="fas fa-check"></i> Negociación</li>
+            </ul>
+          </div>
+        </div>
+
+        <div *ngSwitchCase="12" class="service-modal">
+          <div class="modal-header">
+            <i class="fas fa-user-times"></i>
+            <h3>Insolvencia de Persona Natural No Comerciante</h3>
+          </div>
+          <div class="modal-description">
+            <p>Asesoría en procesos de insolvencia para personas naturales. Facilitamos la reorganización financiera y el nuevo comienzo económico.</p>
+          </div>
+          <div class="modal-services">
+            <h4>Servicios Incluidos:</h4>
+            <ul>
+              <li><i class="fas fa-check"></i> Procesos de insolvencia</li>
+              <li><i class="fas fa-check"></i> Reorganización de deudas</li>
+              <li><i class="fas fa-check"></i> Liquidación judicial</li>
+              <li><i class="fas fa-check"></i> Acuerdos con acreedores</li>
+            </ul>
+          </div>
+        </div>
+
+        <div *ngSwitchCase="13" class="service-modal">
+          <div class="modal-header">
+            <i class="fas fa-hammer"></i>
+            <h3>Expertos en Remates Judiciales</h3>
+          </div>
+          <div class="modal-description">
+            <p>Especialistas en procedimientos de remate y adjudicación judicial. Maximizamos el valor en procesos de ejecución y adjudicación.</p>
+          </div>
+          <div class="modal-services">
+            <h4>Servicios Incluidos:</h4>
+            <ul>
+              <li><i class="fas fa-check"></i> Remates judiciales</li>
+              <li><i class="fas fa-check"></i> Adjudicaciones</li>
+              <li><i class="fas fa-check"></i> Avalúos judiciales</li>
+              <li><i class="fas fa-check"></i> Embargos y secuestros</li>
+            </ul>
+          </div>
+        </div>
+
+        <div *ngSwitchCase="14" class="service-modal">
+          <div class="modal-header">
+            <i class="fas fa-stamp"></i>
+            <h3>Trámites Notariales</h3>
+          </div>
+          <div class="modal-description">
+            <p>Gestión integral de trámites notariales y documentación legal. Facilitamos todos sus trámites notariales con eficiencia y seguridad jurídica.</p>
+          </div>
+          <div class="modal-services">
+            <h4>Servicios Incluidos:</h4>
+            <ul>
+              <li><i class="fas fa-check"></i> Escrituras públicas</li>
+              <li><i class="fas fa-check"></i> Poderes y autorizaciones</li>
+              <li><i class="fas fa-check"></i> Testamentos</li>
+              <li><i class="fas fa-check"></i> Constitución de sociedades</li>
+            </ul>
+          </div>
+        </div>
+
+        <div *ngSwitchCase="15" class="service-modal">
+          <div class="modal-header">
+            <i class="fas fa-shopping-cart"></i>
+            <h3>Defensa Integral en Derechos del Consumidor</h3>
+          </div>
+          <div class="modal-description">
+            <p>Protección y defensa de los derechos de los consumidores. Defendemos sus derechos como consumidor ante cualquier vulneración.</p>
+          </div>
+          <div class="modal-services">
+            <h4>Servicios Incluidos:</h4>
+            <ul>
+              <li><i class="fas fa-check"></i> Reclamaciones de consumo</li>
+              <li><i class="fas fa-check"></i> Garantías y devoluciones</li>
+              <li><i class="fas fa-check"></i> Cláusulas abusivas</li>
+              <li><i class="fas fa-check"></i> Defensa ante la SIC</li>
+            </ul>
+          </div>
+        </div>
+
+        <div *ngSwitchCase="16" class="service-modal">
+          <div class="modal-header">
+            <i class="fas fa-hard-hat"></i>
+            <h3>Litigios contra Constructoras</h3>
+          </div>
+          <div class="modal-description">
+            <p>Especialistas en conflictos con constructoras y defectos de construcción. Protegemos sus derechos como comprador de vivienda.</p>
+          </div>
+          <div class="modal-services">
+            <h4>Servicios Incluidos:</h4>
+            <ul>
+              <li><i class="fas fa-check"></i> Defectos de construcción</li>
+              <li><i class="fas fa-check"></i> Vicios ocultos</li>
+              <li><i class="fas fa-check"></i> Garantías de obra</li>
+              <li><i class="fas fa-check"></i> Responsabilidad constructora</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

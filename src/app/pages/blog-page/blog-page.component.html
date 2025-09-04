@@ -1,0 +1,127 @@
+<!-- Blog Page -->
+<div class="blog-page">
+  <div class="container">
+    <!-- Blog Header -->
+    <div class="blog-header">
+      <h1 class="blog-title">Blog</h1>
+      
+      <!-- Search Bar -->
+      <div class="search-container">
+        <input 
+          type="text" 
+          class="search-input" 
+          placeholder="Buscar artículos..."
+          [(ngModel)]="searchTerm"
+          (input)="onSearch()">
+        <button class="search-btn">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="blog-content">
+      <!-- Sidebar with Filters -->
+      <aside class="blog-sidebar">
+        <div class="filters-container">
+          <h3 class="filters-title">Filtros de Búsqueda</h3>
+          
+          <!-- Date Filter -->
+          <div class="filter-group">
+            <label for="date-filter">Fecha</label>
+            <input 
+              type="month" 
+              id="date-filter"
+              class="filter-input"
+              [(ngModel)]="selectedDate"
+              (change)="onDateFilter()">
+          </div>
+          
+          <!-- Case Type Filter -->
+          <div class="filter-group">
+            <label for="type-filter">Tipo de Caso</label>
+            <select 
+              id="type-filter"
+              class="filter-select"
+              [(ngModel)]="selectedCaseType"
+              (change)="onTypeFilter()">
+              <option value="">Todos los tipos</option>
+              <option *ngFor="let type of caseTypes" [value]="type">{{ type }}</option>
+            </select>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content Area -->
+      <main class="blog-main">
+        <!-- Featured Post (if exists) -->
+        <div class="featured-section" *ngIf="featuredPost">
+          <h2 class="section-title">Recomendaciones</h2>
+          <p class="section-subtitle">Subidos Recientemente</p>
+          
+          <div class="featured-post">
+            <div class="featured-image">
+              <img [src]="featuredPost.image" [alt]="featuredPost.title">
+              <div class="play-overlay">
+                <i class="fas fa-play"></i>
+              </div>
+            </div>
+            <div class="featured-content">
+              <h3 class="featured-title">{{ featuredPost.title }}</h3>
+              <p class="featured-description">{{ featuredPost.description }}</p>
+              <div class="featured-meta">
+                <span class="featured-date">{{ featuredPost.date | date:'dd/MM/yyyy' }}</span>
+                <span class="featured-category">{{ featuredPost.category }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Regular Posts Grid -->
+        <div class="posts-grid">
+          <div class="post-card" *ngFor="let post of paginatedPosts">
+            <div class="post-image">
+              <img [src]="post.image" [alt]="post.title">
+            </div>
+            <div class="post-content">
+              <h4 class="post-title">{{ post.title }}</h4>
+              <p class="post-description">{{ post.description }}</p>
+              <div class="post-meta">
+                <span class="post-date">{{ post.date | date:'dd/MM/yyyy' }}</span>
+                <span class="post-category">{{ post.category }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination" *ngIf="totalPages > 1">
+          <button 
+            class="pagination-btn" 
+            (click)="previousPage()"
+            [disabled]="currentPage === 1">
+            <i class="fas fa-chevron-left"></i>
+            Previous
+          </button>
+          
+          <div class="pagination-numbers">
+            <button 
+              *ngFor="let page of [].constructor(totalPages); let i = index"
+              class="pagination-number"
+              [class.active]="currentPage === i + 1"
+              (click)="goToPage(i + 1)">
+              {{ i + 1 }}
+            </button>
+          </div>
+          
+          <button 
+            class="pagination-btn" 
+            (click)="nextPage()"
+            [disabled]="currentPage === totalPages">
+            Next
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>

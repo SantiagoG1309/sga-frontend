@@ -1,0 +1,25 @@
+// Main app component styles
+// The component styles are now distributed across individual components
+// This file contains only global app-level styles
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+// Smooth scrolling for the entire page
+html {
+  scroll-behavior: smooth;
+}
+
+// Global app container
+:host {
+  display: block;
+  min-height: 100vh;
+}

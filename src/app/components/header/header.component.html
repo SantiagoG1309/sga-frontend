@@ -1,0 +1,42 @@
+<header class="header">
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-content">
+        <!-- Logo/Brand -->
+        <div class="navbar-brand">
+          <div class="brand-logo">
+            <div class="logo-icon">
+              <i class="fas fa-balance-scale"></i>
+            </div>
+            <div class="brand-text">
+              <span class="brand-main">Pravda SaGa</span>
+              <span class="brand-subtitle">Abogados & Académicos</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <ul class="navbar-nav desktop-nav">
+          <li><a routerLink="/home" class="nav-link">Inicio</a></li>
+          <li><a routerLink="/blog" class="nav-link">Blog</a></li>
+          <li><a href="#about" class="nav-link">Nosotros</a></li>
+          <li><a href="#services" class="nav-link">Cartera</a></li>
+        </ul>
+
+        <!-- Mobile Menu Button -->
+        <button class="mobile-menu-btn" (click)="toggleMobileMenu()">
+          <i class="fas fa-bars" *ngIf="!isMobileMenuOpen"></i>
+          <i class="fas fa-times" *ngIf="isMobileMenuOpen"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Navigation -->
+      <ul class="mobile-nav" [class.active]="isMobileMenuOpen">
+        <li><a routerLink="/home" class="nav-link" (click)="closeMobileMenu()">Inicio</a></li>
+        <li><a routerLink="/blog" class="nav-link" (click)="closeMobileMenu()">Blog</a></li>
+        <li><a href="#about" class="nav-link" (click)="closeMobileMenu()">Nosotros</a></li>
+        <li><a href="#services" class="nav-link" (click)="closeMobileMenu()">Cartera</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>

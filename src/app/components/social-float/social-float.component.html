@@ -1,0 +1,16 @@
+<!-- Social Media Float Widget -->
+<div class="social-float-container">
+  <div class="social-float-widget">
+    <div class="social-buttons">
+      <button 
+        *ngFor="let social of socialNetworks"
+        class="social-button"
+        [style.background-color]="social.color"
+        (click)="openSocialNetwork(social.url)"
+        [title]="'Síguenos en ' + social.name"
+        [attr.aria-label]="'Ir a ' + social.name">
+        <i [class]="social.icon"></i>
+      </button>
+    </div>
+  </div>
+</div>

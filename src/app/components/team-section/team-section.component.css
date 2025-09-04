@@ -1,0 +1,280 @@
+/* Team Section Styles */
+.team-section {
+  padding: 80px 0;
+  background: linear-gradient(135deg, #f8f9ff, #e8f2ff);
+  position: relative;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Section Header */
+.team-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--dark-blue);
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-light);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Carousel Container */
+.team-carousel-container {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Carousel Navigation Arrows */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--primary-gold);
+  color: white;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+.carousel-arrow:hover {
+  background: #B8860B;
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+}
+
+.carousel-arrow:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: translateY(-50%);
+}
+
+.carousel-arrow.prev {
+  left: -25px;
+}
+
+.carousel-arrow.next {
+  right: -25px;
+}
+
+.carousel-arrow i {
+  font-size: 1.2rem;
+}
+
+/* Team Carousel */
+.team-carousel {
+  overflow: hidden;
+  padding: 1rem 0;
+}
+
+.team-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  gap: 2rem;
+}
+
+/* Team Member Card */
+.team-member {
+  flex: 0 0 calc(33.333% - 1.333rem);
+  background: white;
+  border-radius: 20px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 3px solid transparent;
+}
+
+.team-member:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  border-color: var(--primary-gold);
+}
+
+/* Member Image */
+.member-image-container {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.member-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--primary-gold);
+  padding: 3px;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.team-member:hover .member-image {
+  transform: scale(1.05);
+}
+
+/* Member Details */
+.member-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--dark-blue);
+  margin-bottom: 0.5rem;
+}
+
+.member-badge {
+  background: var(--primary-gold);
+  color: white;
+  padding: 0.3rem 1rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.member-specialty {
+  font-size: 1rem;
+  color: var(--dark-blue);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.member-experience {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  margin-bottom: 0;
+}
+
+/* Carousel Indicators */
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  background: #ddd;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.indicator.active {
+  background: var(--primary-gold);
+  transform: scale(1.2);
+}
+
+.indicator:hover {
+  background: #bbb;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .team-member {
+    flex: 0 0 calc(50% - 1rem);
+  }
+  
+  .carousel-arrow.prev {
+    left: -15px;
+  }
+  
+  .carousel-arrow.next {
+    right: -15px;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .team-section {
+    padding: 60px 0;
+  }
+  
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .team-member {
+    flex: 0 0 100%;
+  }
+  
+  .carousel-arrow {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .carousel-arrow.prev {
+    left: -10px;
+  }
+  
+  .carousel-arrow.next {
+    right: -10px;
+  }
+  
+  .carousel-arrow i {
+    font-size: 1rem;
+  }
+  
+  .member-image {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .section-subtitle {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-arrow {
+    display: none;
+  }
+  
+  .team-member {
+    padding: 1rem;
+  }
+  
+  .member-image {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .member-name {
+    font-size: 1.1rem;
+  }
+  
+  .member-badge {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.8rem;
+  }
+}

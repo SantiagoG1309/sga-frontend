@@ -1,0 +1,16 @@
+<!-- Header -->
+<app-header></app-header>
+
+<!-- Main Content - Router Outlet -->
+<main>
+  <router-outlet></router-outlet>
+</main>
+
+<!-- Footer -->
+<app-footer></app-footer>
+
+<!-- Admin Panel (conditional) -->
+<app-admin-panel *ngIf="showAdminPanel"></app-admin-panel>
+
+<!-- Social Media Float Widget -->
+<app-social-float></app-social-float>

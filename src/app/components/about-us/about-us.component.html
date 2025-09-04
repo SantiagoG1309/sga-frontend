@@ -1,0 +1,123 @@
+<section id="about" class="about-section bg-section bg-about">
+  <div class="container">
+    <div class="about-header text-center">
+      <h2>Sobre Nosotros</h2>
+      <p class="about-intro">En Pravda SaGa Abogados & Académicos, nos comprometemos con la excelencia jurídica y la transformación social a través del derecho.</p>
+    </div>
+    
+    <!-- Sección Principal Nosotros -->
+    <div class="main-about-section">
+      <div class="about-main-card">
+        <div class="main-content">
+          <h3 class="main-title">Pravda SaGa Abogados & Académicos: Excelencia, Justicia y Compromiso</h3>
+          <div class="main-text" [class.expanded]="mainExpanded">
+            <p class="preview-text">
+              En Pravda SaGa Abogados & Académicos, somos un equipo de abogados altamente especializados, 
+              comprometidos con la defensa de los derechos de nuestros clientes y la búsqueda incansable de la justicia.
+            </p>
+            <div class="full-text">
+              <p>
+                En Pravda SaGa Abogados & Académicos, somos un equipo de abogados altamente 
+                especializados, comprometidos con la defensa de los derechos de nuestros clientes y la 
+                búsqueda incansable de la justicia. Nuestra firma combina el conocimiento jurídico con 
+                una estrategia legal innovadora, ofreciendo soluciones efectivas y personalizadas en cada 
+                caso.
+              </p>
+              <p>
+                Nos destacamos por nuestra integridad, ética profesional y resultados contundentes, 
+                garantizando a cada cliente una representación excepcional en diversas áreas del derecho, 
+                desde el ámbito penal hasta el civil, pasando por litigios contra constructoras, derecho de 
+                familia, reclamaciones de seguros, propiedad horizontal, pensiones y más.
+              </p>
+              <p>
+                Nuestra trayectoria nos ha consolidado como una de las firmas más confiables y efectivas 
+                en Colombia, con una práctica basada en el rigor jurídico, la argumentación sólida y la 
+                defensa estratégica.
+              </p>
+              <p>
+                Contamos con abogados expertos en cada rama del derecho, con un profundo conocimiento 
+                normativo y jurisprudencial. Cada caso es analizado con una visión estratégica, 
+                asegurando soluciones eficaces y ajustadas a la ley. Entendemos que cada cliente es único, 
+                por lo que ofrecemos asesoría personalizada, enfocada en sus necesidades específicas.
+              </p>
+              <div class="highlights">
+                <div class="highlight-item">
+                  <strong>Resultados Comprobados:</strong> Nuestra firma ha logrado fallos favorables en múltiples 
+                  litigios, protegiendo con éxito los intereses de nuestros clientes.
+                </div>
+                <div class="highlight-item">
+                  <strong>Defensa Rigurosa y Comprometida:</strong> En cada proceso, luchamos con determinación para 
+                  garantizar justicia y equidad.
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="read-more-btn main-btn" (click)="toggleMain()">
+            {{ mainExpanded ? 'Ver menos' : 'Ver más' }}
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Sección Misión y Visión -->
+    <div class="mission-vision-header">
+      <h3>Nuestra Filosofía</h3>
+    </div>
+    
+    <div class="mission-vision-cards">
+      <!-- Misión Card -->
+      <div class="mission-vision-card">
+        <div class="card-icon">
+          <i class="fas fa-bullseye"></i>
+        </div>
+        <h3 class="card-title">Nuestra Misión</h3>
+        <p class="card-text" [class.expanded]="missionExpanded">
+          <span class="preview-text">
+            Defender los derechos de nuestros clientes con excelencia profesional, integridad moral y compromiso social, brindando soluciones legales efectivas e innovadoras.
+          </span>
+          <span class="full-text">
+            En Pravda SaGa Abogados & Académicos, creemos en el derecho como una herramienta de 
+            transformación social y justicia. Nuestra misión es ofrecer una defensa jurídica integral, 
+            basada en la ética, la excelencia y el conocimiento profundo del ordenamiento jurídico. Nos 
+            comprometemos con la protección de los derechos de nuestros clientes, brindando 
+            soluciones estratégicas y personalizadas que respondan a sus necesidades. Además, 
+            promovemos la educación jurídica como un pilar esencial para el fortalecimiento del acceso 
+            a la justicia y la construcción de una sociedad más equitativa y consciente de sus derechos.
+          </span>
+        </p>
+        <button class="read-more-btn" (click)="toggleMission()">
+          {{ missionExpanded ? 'Ver menos' : 'Ver más' }}
+        </button>
+      </div>
+
+      <!-- Visión Card -->
+      <div class="mission-vision-card">
+        <div class="card-icon vision">
+          <i class="fas fa-eye"></i>
+        </div>
+        <h3 class="card-title">Nuestra Visión</h3>
+        <p class="card-text" [class.expanded]="visionExpanded">
+          <span class="preview-text">
+            Ser reconocidos como la firma legal líder en el país, distinguida por su excelencia académica, innovación jurídica y impacto positivo en la sociedad.
+          </span>
+          <span class="full-text">
+            En Pravda SaGa Abogados & Académicos, aspiramos a consolidarnos como un referente en 
+            el ejercicio del derecho y la formación jurídica en Colombia, destacándonos por nuestra 
+            ética, excelencia profesional y compromiso con la justicia. Nos proyectamos como una firma 
+            innovadora, capaz de transformar el acceso a la justicia a través de soluciones jurídicas 
+            estratégicas, fundamentadas en el conocimiento profundo de la legislación y la realidad 
+            social del país. Buscamos no solo defender los derechos de nuestros clientes, sino también generar un 
+            impacto positivo en la sociedad, promoviendo el respeto por la ley, el fortalecimiento del 
+            Estado de derecho y la formación de una ciudadanía más informada y empoderada. A través 
+            de nuestra labor académica, aspiramos a contribuir al desarrollo de nuevas generaciones 
+            de abogados con una visión crítica, ética y comprometida con la defensa de los derechos 
+            humanos y la equidad.
+          </span>
+        </p>
+        <button class="read-more-btn" (click)="toggleVision()">
+          {{ visionExpanded ? 'Ver menos' : 'Ver más' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
