@@ -13,7 +13,9 @@ import { filter } from 'rxjs/operators';
 export class HeaderComponent implements OnInit {
   isMobileMenuOpen = false;
   isLoggedIn = false;
+
   isAdmin = false;
+
   currentRoute = '';
   scrollY = 0;
   isHovered = false;
@@ -90,11 +92,12 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-  localStorage.removeItem('user');
-  localStorage.removeItem('role');
-  this.isLoggedIn = false;
-  this.isAdmin = false;
-  this.router.navigate(['/login']);
+
+    localStorage.removeItem('user');
+    this.isLoggedIn = false;
+    this.router.navigate(['/login']);
+
+
   }
 
   navigateToSection(sectionId: string) {

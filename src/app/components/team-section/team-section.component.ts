@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { PersonalService, Personal } from '../../services/personal.service';
 
 @Component({
   selector: 'app-team-section',
@@ -10,15 +11,35 @@ import { CommonModule } from '@angular/common';
 })
 export class TeamSectionComponent implements OnInit {
   currentSlide = 0;
-  totalSlides = 5; // Total number of team members
-  slidesToShow = 3; // Number of slides to show at once
+  totalSlides = 0;
+  slidesToShow = 3;
   maxSlides = 0;
   slideWidth = 0;
   indicators: number[] = [];
+  personal: Personal[] = [];
+
+  constructor(private personalService: PersonalService) {}
 
   ngOnInit() {
-    this.calculateSlides();
-    this.updateSlideWidth();
+    this.loadPersonal();
+  }
+
+  loadPersonal() {
+    this.personalService.getAllPersonal().subscribe(
+      (data) => {
+        this.personal = data;
+        this.totalSlides = this.personal.length;
+        this.calculateSlides();
+        this.updateSlideWidth();
+      },
+      (error) => {
+        console.error('Error al cargar personal:', error);
+        // En caso de error, usar datos por defecto
+        this.totalSlides = 0;
+        this.calculateSlides();
+        this.updateSlideWidth();
+      }
+    );
   }
 
   calculateSlides() {

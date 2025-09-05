@@ -1,0 +1,15 @@
+/* Estilos adicionales si es necesario */
+.personal-management {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+button:hover {
+  opacity: 0.9;
+  transition: opacity 0.2s;
+}
+
+input:focus {
+  outline: none;
+  border-color: #495460;
+  box-shadow: 0 0 0 2px rgba(73, 84, 96, 0.2);
+}
