@@ -2,7 +2,7 @@
 .blog-page {
   min-height: 100vh;
   background: linear-gradient(135deg, #f8f9ff, #e8f2ff);
-  padding: 8rem 0 2rem 0; /* Increased top padding to account for fixed navbar */
+  padding: 7rem 0 2rem 0; /* Sufficient padding for top-positioned navbar */
 }
 
 .container {
@@ -427,7 +427,7 @@
 
 @media (max-width: 768px) {
   .blog-page {
-    padding-top: 7rem; /* Reduced padding for mobile */
+    padding-top: 6rem; /* Adjusted for mobile */
   }
   
   .blog-header {
@@ -460,7 +460,7 @@
 
 @media (max-width: 480px) {
   .blog-page {
-    padding-top: 6rem; /* Further reduced for very small screens */
+    padding-top: 5rem; /* Adjusted for small screens */
   }
   
   .container {

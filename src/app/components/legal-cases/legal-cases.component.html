@@ -1,21 +1,68 @@
-<section id="cases" class="cases-section bg-section bg-cases">
+<section id="cases" class="legal-cases-section">
   <div class="container">
-    <h2 class="text-center mb-5">Casos Destacados</h2>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="case-card">
-          <h4>Caso Exitoso 1</h4>
-          <p>Resolución favorable en disputa comercial compleja</p>
-          <span class="case-result">Resultado: Favorable</span>
+    <!-- Header -->
+    <div class="section-header">
+      <h2 class="section-title">Casos Exitosos Recientes</h2>
+      <p class="section-subtitle">
+        Nuestra experiencia se refleja en los resultados obtenidos. Conoce algunos de 
+        nuestros casos más representativos y exitosos en diferentes áreas del derecho.
+      </p>
+    </div>
+
+    <!-- Statistics Grid -->
+    <div class="statistics-grid">
+      <div class="stat-card" *ngFor="let stat of statistics" [ngClass]="'stat-' + stat.color">
+        <div class="stat-icon">
+          <i [class]="stat.icon"></i>
+        </div>
+        <div class="stat-content">
+          <h3 class="stat-value">{{ stat.value }}</h3>
+          <p class="stat-label">{{ stat.label }}</p>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="case-card">
-          <h4>Caso Exitoso 2</h4>
-          <p>Defensa exitosa en caso de derecho laboral</p>
-          <span class="case-result">Resultado: Favorable</span>
+    </div>
+
+    <!-- Recent Sentences Preview -->
+    <div class="sentences-preview">
+      <div class="sentence-card" *ngFor="let sentence of recentSentences">
+        <div class="sentence-header">
+          <div class="sentence-meta">
+            <span class="sentence-id">{{ sentence.id }}</span>
+            <span class="sentence-status" [ngClass]="sentence.status.toLowerCase()">
+              {{ sentence.status }}
+            </span>
+          </div>
+          <div class="sentence-type">{{ sentence.type }}</div>
+        </div>
+        
+        <div class="sentence-content">
+          <h3 class="sentence-title">{{ sentence.title }}</h3>
+          <div class="sentence-details">
+            <div class="detail-item">
+              <i class="fas fa-building"></i>
+              <span>{{ sentence.court }}</span>
+            </div>
+            <div class="detail-item">
+              <i class="fas fa-calendar"></i>
+              <span>{{ sentence.date }}</span>
+            </div>
+          </div>
+          <p class="sentence-description">{{ sentence.description }}</p>
+          
+          <div class="sentence-impact">
+            <strong>Impacto:</strong>
+            <p>{{ sentence.impact }}</p>
+          </div>
         </div>
       </div>
+    </div>
+
+    <!-- View All Button -->
+    <div class="view-all-container">
+      <a routerLink="/sentences" class="view-all-btn">
+        <span>Ver Todas las Sentencias</span>
+        <i class="fas fa-arrow-right"></i>
+      </a>
     </div>
   </div>
 </section>
