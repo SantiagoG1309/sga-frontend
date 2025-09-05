@@ -1,0 +1,158 @@
+<div style="background: #f8f9fa; min-height: 100vh; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+  <aside style="width: 260px; background: #495460; color: #fff; position: fixed; top: 0; left: 0; height: 100vh; display: flex; flex-direction: column; box-shadow: 2px 0 4px rgba(0,0,0,0.1);">
+    <div style="padding: 24px 20px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1);">
+      <div style="width: 40px; height: 40px; background: #fff; border-radius: 8px; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; color: #495460; font-weight: bold; font-size: 1.2rem;">P</div>
+      <div style="font-weight: 600; font-size: 1rem; line-height: 1.3;">Pravda SaGa Abogados &<br>Académicos</div>
+    </div>
+    <nav style="flex: 1; padding: 16px 0;">
+      <ul style="list-style: none; padding: 0; margin: 0;">
+        <li style="margin: 0 16px 4px 16px;">
+          <div style="padding: 12px 16px; cursor: pointer; font-weight: 500; border-radius: 8px; display: flex; align-items: center; font-size: 0.95rem; color: #b8c1cc;">
+            <i class="fas fa-user" style="margin-right: 12px; width: 16px;"></i>Usuarios
+          </div>
+        </li>
+        <li style="margin: 0 16px 4px 16px;">
+          <div style="padding: 12px 16px; cursor: pointer; font-weight: 500; background: #3a434f; border-radius: 8px; display: flex; align-items: center; font-size: 0.95rem;">
+            <i class="fas fa-users" style="margin-right: 12px; width: 16px;"></i>Personal
+          </div>
+        </li>
+        <li style="margin: 0 16px 4px 16px;">
+          <div style="padding: 12px 16px; cursor: pointer; font-weight: 500; border-radius: 8px; display: flex; align-items: center; font-size: 0.95rem; color: #b8c1cc;">
+            <i class="fas fa-gavel" style="margin-right: 12px; width: 16px;"></i>Sentencias
+          </div>
+        </li>
+        <li style="margin: 0 16px 4px 16px;">
+          <div style="padding: 12px 16px; cursor: pointer; font-weight: 500; border-radius: 8px; display: flex; align-items: center; font-size: 0.95rem; color: #b8c1cc;">
+            <i class="fas fa-edit" style="margin-right: 12px; width: 16px;"></i>Blog
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+  <main style="margin-left: 260px; padding: 40px 32px; background: #fff;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px;">
+      <h1 style="font-size: 2rem; font-weight: 600; color: #495460; margin: 0;">Personal</h1>
+      <button 
+        (click)="toggleAddForm()"
+        style="background: #495460; color: #fff; border: none; border-radius: 8px; padding: 12px 24px; font-weight: 500; cursor: pointer; font-size: 0.95rem;">
+        Añadir miembro
+      </button>
+    </div>
+
+    <!-- Formulario para agregar personal -->
+    <div *ngIf="showAddForm" style="background: #f8f9fa; border-radius: 12px; padding: 24px; margin-bottom: 32px; border: 1px solid #e9ecef;">
+      <h3 style="margin-bottom: 24px; color: #495460; font-weight: 600;">Agregar Nuevo Personal</h3>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+        <div>
+          <label style="display: block; margin-bottom: 8px; font-weight: 500; color: #495460;">Nombre:</label>
+          <input 
+            type="text" 
+            [(ngModel)]="newPersonal.nombre"
+            style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 6px; font-size: 0.95rem;"
+            placeholder="Nombre completo">
+        </div>
+        <div>
+          <label style="display: block; margin-bottom: 8px; font-weight: 500; color: #495460;">Cargo:</label>
+          <input 
+            type="text" 
+            [(ngModel)]="newPersonal.cargo"
+            style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 6px; font-size: 0.95rem;"
+            placeholder="Cargo en la empresa">
+        </div>
+        <div>
+          <label style="display: block; margin-bottom: 8px; font-weight: 500; color: #495460;">Especialización:</label>
+          <input 
+            type="text" 
+            [(ngModel)]="newPersonal.especializacion"
+            style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 6px; font-size: 0.95rem;"
+            placeholder="Área de especialización">
+        </div>
+        <div>
+          <label style="display: block; margin-bottom: 8px; font-weight: 500; color: #495460;">Años de Experiencia:</label>
+          <input 
+            type="number" 
+            [(ngModel)]="newPersonal.anosExperiencia"
+            style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 6px; font-size: 0.95rem;"
+            placeholder="0">
+        </div>
+        <div style="grid-column: 1 / -1;">
+          <label style="display: block; margin-bottom: 8px; font-weight: 500; color: #495460;">URL de Foto:</label>
+          <input 
+            type="url" 
+            [(ngModel)]="newPersonal.foto"
+            style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 6px; font-size: 0.95rem;"
+            placeholder="https://ejemplo.com/foto.jpg">
+        </div>
+      </div>
+      <div style="margin-top: 20px; display: flex; gap: 12px;">
+        <button 
+          (click)="addPersonal()"
+          style="background: #495460; color: #fff; border: none; border-radius: 6px; padding: 10px 20px; cursor: pointer;">
+          Guardar
+        </button>
+        <button 
+          (click)="toggleAddForm()"
+          style="background: #6c757d; color: #fff; border: none; border-radius: 6px; padding: 10px 20px; cursor: pointer;">
+          Cancelar
+        </button>
+      </div>
+    </div>
+
+    <!-- Barra de búsqueda -->
+    <div style="margin-bottom: 24px;">
+      <div style="position: relative; max-width: 400px;">
+        <i class="fas fa-search" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #6c757d;"></i>
+        <input 
+          type="text" 
+          placeholder="Buscar por nombre o cargo"
+          style="width: 100%; padding: 12px 12px 12px 40px; border: 1px solid #ced4da; border-radius: 8px; font-size: 0.95rem; background: #f8f9fa;">
+      </div>
+    </div>
+
+    <!-- Lista de personal -->
+    <div style="background: #f8f9fa; border-radius: 12px; padding: 24px;">
+      <table style="width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden;">
+        <thead style="background: #495460; color: #fff;">
+          <tr>
+            <th style="padding: 16px; text-align: left; font-weight: 500;">Nombre</th>
+            <th style="padding: 16px; text-align: left; font-weight: 500;">Cargo</th>
+            <th style="padding: 16px; text-align: left; font-weight: 500;">Especialización</th>
+            <th style="padding: 16px; text-align: left; font-weight: 500;">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let persona of personal" style="border-bottom: 1px solid #e9ecef;">
+            <td style="padding: 16px; display: flex; align-items: center;">
+              <div style="width: 40px; height: 40px; border-radius: 50%; overflow: hidden; margin-right: 12px; background: #e9ecef;">
+                <img *ngIf="persona.foto && persona.foto.trim() !== ''" 
+                     [src]="persona.foto" 
+                     [alt]="persona.nombre" 
+                     style="width: 100%; height: 100%; object-fit: cover;"
+                     (error)="onImageError($event)">
+                <div *ngIf="!persona.foto || persona.foto.trim() === ''" 
+                     style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #6c757d; color: #fff; font-weight: bold; font-size: 1.1rem;">
+                  {{persona.nombre.charAt(0).toUpperCase()}}
+                </div>
+              </div>
+              {{persona.nombre}}
+            </td>
+            <td style="padding: 16px;">{{persona.cargo}}</td>
+            <td style="padding: 16px;">{{persona.especializacion}}</td>
+            <td style="padding: 16px;">
+              <button 
+                (click)="deletePersonal(persona.id!)"
+                style="background: #dc3545; color: #fff; border: none; border-radius: 4px; padding: 6px 12px; cursor: pointer; font-size: 0.85rem;">
+                Eliminar
+              </button>
+            </td>
+          </tr>
+          <tr *ngIf="personal.length === 0">
+            <td colspan="4" style="padding: 32px; text-align: center; color: #6c757d;">
+              No hay personal registrado
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>

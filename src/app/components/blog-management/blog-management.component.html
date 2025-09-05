@@ -1,0 +1,141 @@
+<div class="blog-management">
+  <div class="header">
+    <h2>Gestión del Blog</h2>
+    <button class="btn btn-primary" (click)="toggleAddForm()">
+      {{ showAddForm ? 'Cancelar' : 'Agregar Nueva Entrada' }}
+    </button>
+  </div>
+
+  <!-- Formulario para agregar nueva entrada -->
+  <div class="add-form" *ngIf="showAddForm">
+    <h3>Nueva Entrada del Blog</h3>
+    <form (ngSubmit)="addBlog()">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="fecha">Fecha *</label>
+          <input
+            type="date"
+            id="fecha"
+            [(ngModel)]="newBlog.fecha"
+            name="fecha"
+            required
+            class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="tipoCaso">Tipo de Caso *</label>
+          <select
+            id="tipoCaso"
+            [(ngModel)]="newBlog.tipoCaso"
+            name="tipoCaso"
+            required
+            class="form-control">
+            <option value="">Selecciona un tipo</option>
+            <option *ngFor="let tipo of tiposCaso" [value]="tipo">{{ tipo }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="titulo">Título *</label>
+        <input
+          type="text"
+          id="titulo"
+          [(ngModel)]="newBlog.titulo"
+          name="titulo"
+          required
+          placeholder="Título de la entrada"
+          class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="breveDescripcion">Breve Descripción *</label>
+        <textarea
+          id="breveDescripcion"
+          [(ngModel)]="newBlog.breveDescripcion"
+          name="breveDescripcion"
+          required
+          placeholder="Descripción de la entrada..."
+          rows="4"
+          class="form-control"></textarea>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="imagen">URL de Imagen</label>
+          <input
+            type="url"
+            id="imagen"
+            [(ngModel)]="newBlog.imagen"
+            name="imagen"
+            placeholder="https://ejemplo.com/imagen.jpg"
+            class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="video">URL de Video</label>
+          <input
+            type="url"
+            id="video"
+            [(ngModel)]="newBlog.video"
+            name="video"
+            placeholder="https://youtube.com/watch?v=..."
+            class="form-control">
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-success">Agregar Entrada</button>
+        <button type="button" class="btn btn-secondary" (click)="toggleAddForm()">Cancelar</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Lista de entradas del blog -->
+  <div class="blog-list">
+    <h3>Entradas Existentes</h3>
+    
+    <!-- Estado de carga -->
+    <div *ngIf="isLoading" class="loading-state">
+      <p>Cargando entradas del blog...</p>
+    </div>
+    
+    <div class="blog-cards" *ngIf="!isLoading && blogs.length > 0">
+      <p class="blog-count">Total: {{ blogs.length }} entrada(s)</p>
+      <div class="blog-card" *ngFor="let blog of blogs">
+        <div class="blog-card-header">
+          <div class="blog-info">
+            <h4>{{ blog.titulo }}</h4>
+            <div class="blog-meta">
+              <span class="date">{{ formatDate(blog.fecha) }}</span>
+              <span class="tipo">{{ blog.tipoCaso }}</span>
+            </div>
+          </div>
+          <div class="blog-actions">
+            <button class="btn btn-danger btn-sm" (click)="deleteBlog(blog.id!)">
+              Eliminar
+            </button>
+          </div>
+        </div>
+        
+        <div class="blog-content">
+          <p>{{ blog.breveDescripcion }}</p>
+          
+          <div class="media-info" *ngIf="blog.imagen || blog.video">
+            <div class="media-item" *ngIf="blog.imagen">
+              <strong>Imagen:</strong>
+              <img [src]="blog.imagen" alt="Vista previa" class="media-preview">
+            </div>
+            <div class="media-item" *ngIf="blog.video">
+              <strong>Video:</strong>
+              <a [href]="blog.video" target="_blank" class="video-link">Ver video</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="no-blogs" *ngIf="!isLoading && blogs.length === 0">
+      <p>No hay entradas de blog creadas aún.</p>
+      <p>Usa el botón "Agregar Nueva Entrada" para crear la primera entrada.</p>
+    </div>
+  </div>
+</div>

@@ -5,7 +5,7 @@
       <p class="section-subtitle">Profesionales comprometidos con la excelencia jurídica</p>
     </div>
     
-    <div class="team-carousel-container">
+    <div class="team-carousel-container" *ngIf="personal.length > 0">
       <!-- Navigation Arrows -->
       <button class="carousel-arrow prev" (click)="previousSlide()" [disabled]="currentSlide === 0">
         <i class="fas fa-chevron-left"></i>
@@ -18,65 +18,23 @@
       <!-- Team Carousel -->
       <div class="team-carousel">
         <div class="team-track" [style.transform]="'translateX(' + (-currentSlide * slideWidth) + '%)'">
-          <!-- Team Member 1 -->
-          <div class="team-member">
+          <!-- Dynamic Team Members from Database -->
+          <div class="team-member" *ngFor="let persona of personal">
             <div class="member-image-container">
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" alt="Dr. Roberto Martínez" class="member-image">
+              <img [src]="persona.foto || 'https://via.placeholder.com/400x400?text=' + persona.nombre.charAt(0)" 
+                   [alt]="persona.nombre" 
+                   class="member-image">
             </div>
-            <h3 class="member-name">Dr. Roberto Martínez</h3>
-            <div class="member-badge">Socio Fundador</div>
-            <p class="member-specialty">Derecho Penal y Procesal</p>
-            <p class="member-experience">25 años de experiencia</p>
-          </div>
-          
-          <!-- Team Member 2 -->
-          <div class="team-member">
-            <div class="member-image-container">
-              <img src="https://images.unsplash.com/photo-1594824694996-34545372c4a7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" alt="Dra. Sofía García" class="member-image">
-            </div>
-            <h3 class="member-name">Dra. Sofía García</h3>
-            <div class="member-badge">Socia Principal</div>
-            <p class="member-specialty">Derecho Civil y Familia</p>
-            <p class="member-experience">18 años de experiencia</p>
-          </div>
-          
-          <!-- Team Member 3 -->
-          <div class="team-member">
-            <div class="member-image-container">
-              <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" alt="Dr. Carlos Mendoza" class="member-image">
-            </div>
-            <h3 class="member-name">Dr. Carlos Mendoza</h3>
-            <div class="member-badge">Socio Senior</div>
-            <p class="member-specialty">Derecho Comercial y Societario</p>
-            <p class="member-experience">22 años de experiencia</p>
-          </div>
-          
-          <!-- Team Member 4 -->
-          <div class="team-member">
-            <div class="member-image-container">
-              <img src="https://images.unsplash.com/photo-1566492031773-4f4e44671d66?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" alt="Dra. Ana Rodríguez" class="member-image">
-            </div>
-            <h3 class="member-name">Dra. Ana Rodríguez</h3>
-            <div class="member-badge">Socia Asociada</div>
-            <p class="member-specialty">Derecho Laboral y Pensiones</p>
-            <p class="member-experience">15 años de experiencia</p>
-          </div>
-          
-          <!-- Team Member 5 -->
-          <div class="team-member">
-            <div class="member-image-container">
-              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" alt="Dr. Miguel Torres" class="member-image">
-            </div>
-            <h3 class="member-name">Dr. Miguel Torres</h3>
-            <div class="member-badge">Socio Junior</div>
-            <p class="member-specialty">Derecho Administrativo y Constitucional</p>
-            <p class="member-experience">12 años de experiencia</p>
+            <h3 class="member-name">{{persona.nombre}}</h3>
+            <div class="member-badge">{{persona.cargo}}</div>
+            <p class="member-specialty">{{persona.especializacion}}</p>
+            <p class="member-experience">{{persona.anosExperiencia}} años de experiencia</p>
           </div>
         </div>
       </div>
       
       <!-- Carousel Indicators -->
-      <div class="carousel-indicators">
+      <div class="carousel-indicators" *ngIf="indicators.length > 1">
         <button 
           *ngFor="let slide of indicators; let i = index" 
           class="indicator" 
@@ -84,6 +42,11 @@
           (click)="goToSlide(i)">
         </button>
       </div>
+    </div>
+    
+    <!-- Mensaje cuando no hay personal -->
+    <div *ngIf="personal.length === 0" class="no-team-message">
+      <p>No hay miembros del equipo registrados.</p>
     </div>
   </div>
 </section>

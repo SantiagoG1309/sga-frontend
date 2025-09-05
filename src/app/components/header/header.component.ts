@@ -13,17 +13,16 @@ import { filter } from 'rxjs/operators';
 export class HeaderComponent implements OnInit {
   isMobileMenuOpen = false;
   isLoggedIn = false;
+  currentRoute = '';
+  scrollY = 0;
+  isHovered = false;
 
   constructor(private router: Router) {
     this.isLoggedIn = !!localStorage.getItem('user');
     this.router.events.subscribe(() => {
       this.isLoggedIn = !!localStorage.getItem('user');
     });
-  currentRoute = '';
-  scrollY = 0;
-  isHovered = false;
-
-  constructor(private router: Router) {}
+  }
 
   @HostListener('window:scroll', ['$event'])
   onScroll() {
@@ -37,7 +36,6 @@ export class HeaderComponent implements OnInit {
     ).subscribe((event: NavigationEnd) => {
       this.currentRoute = event.url;
     });
-    
     // Set initial route
     this.currentRoute = this.router.url;
   }
@@ -68,7 +66,6 @@ export class HeaderComponent implements OnInit {
     if (this.isHovered) {
       return 'linear-gradient(135deg, #024A70 0%, #1a365d 50%, #024A70 100%)';
     }
-    
     const opacity = this.backgroundOpacity;
     return `linear-gradient(135deg, rgba(2, 74, 112, ${opacity}) 0%, rgba(26, 54, 93, ${opacity}) 50%, rgba(2, 74, 112, ${opacity}) 100%)`;
   }
@@ -88,14 +85,15 @@ export class HeaderComponent implements OnInit {
   closeMobileMenu() {
     this.isMobileMenuOpen = false;
   }
+
   logout() {
     localStorage.removeItem('user');
     this.isLoggedIn = false;
     this.router.navigate(['/login']);
-  // Navigate to home and scroll to specific section
+  }
+
   navigateToSection(sectionId: string) {
     this.closeMobileMenu();
-    
     // If we're not on home page, navigate to home first
     if (this.router.url !== '/home' && this.router.url !== '/') {
       this.router.navigate(['/home']).then(() => {

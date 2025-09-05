@@ -53,73 +53,89 @@
 
       <!-- Main Content Area -->
       <main class="blog-main">
-        <!-- Featured Post (if exists) -->
-        <div class="featured-section" *ngIf="featuredPost">
-          <h2 class="section-title">Recomendaciones</h2>
-          <p class="section-subtitle">Subidos Recientemente</p>
-          
-          <div class="featured-post">
-            <div class="featured-image">
-              <img [src]="featuredPost.image" [alt]="featuredPost.title">
-              <div class="play-overlay">
+        <!-- Posts Grid -->
+        <div class="posts-grid" *ngIf="!isLoading">
+          <div class="post-card" *ngFor="let post of paginatedPosts">
+            <div class="post-image">
+              <img 
+                [src]="post.imagen || 'https://images.unsplash.com/photo-1436450412740-6b988f486c6b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'" 
+                [alt]="post.titulo"
+                (error)="$event.target.src='https://images.unsplash.com/photo-1436450412740-6b988f486c6b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'">
+              <div class="play-overlay" *ngIf="post.video">
                 <i class="fas fa-play"></i>
               </div>
             </div>
-            <div class="featured-content">
-              <h3 class="featured-title">{{ featuredPost.title }}</h3>
-              <p class="featured-description">{{ featuredPost.description }}</p>
-              <div class="featured-meta">
-                <span class="featured-date">{{ featuredPost.date | date:'dd/MM/yyyy' }}</span>
-                <span class="featured-category">{{ featuredPost.category }}</span>
+            <div class="post-content">
+              <h4 class="post-title">{{ post.titulo }}</h4>
+              <p class="post-description">{{ truncateText(post.breveDescripcion, 120) }}</p>
+              <div class="post-meta">
+                <span class="post-date">{{ formatDate(post.fecha) }}</span>
+                <span class="post-category">{{ post.tipoCaso }}</span>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Regular Posts Grid -->
-        <div class="posts-grid">
-          <div class="post-card" *ngFor="let post of paginatedPosts">
-            <div class="post-image">
-              <img [src]="post.image" [alt]="post.title">
-            </div>
-            <div class="post-content">
-              <h4 class="post-title">{{ post.title }}</h4>
-              <p class="post-description">{{ post.description }}</p>
-              <div class="post-meta">
-                <span class="post-date">{{ post.date | date:'dd/MM/yyyy' }}</span>
-                <span class="post-category">{{ post.category }}</span>
-              </div>
-            </div>
+        <!-- Loading State -->
+        <div class="loading-state" *ngIf="isLoading">
+          <p>Cargando artículos...</p>
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state" *ngIf="!isLoading && paginatedPosts.length === 0 && filteredPosts.length === 0">
+          <div class="empty-icon">
+            <i class="fas fa-newspaper"></i>
           </div>
+          <h3>No hay artículos disponibles</h3>
+          <p *ngIf="!searchTerm && !selectedDate && !selectedCaseType">Aún no se han publicado artículos en el blog.</p>
+          <p *ngIf="searchTerm || selectedDate || selectedCaseType">No se encontraron artículos con los filtros seleccionados.</p>
         </div>
 
         <!-- Pagination -->
-        <div class="pagination" *ngIf="totalPages > 1">
-          <button 
-            class="pagination-btn" 
-            (click)="previousPage()"
-            [disabled]="currentPage === 1">
-            <i class="fas fa-chevron-left"></i>
-            Previous
-          </button>
-          
-          <div class="pagination-numbers">
+        <div class="pagination-wrapper" *ngIf="!isLoading && totalPages > 1">
+          <nav class="pagination-nav">
+            <!-- Botón Previous -->
             <button 
-              *ngFor="let page of [].constructor(totalPages); let i = index"
-              class="pagination-number"
-              [class.active]="currentPage === i + 1"
-              (click)="goToPage(i + 1)">
-              {{ i + 1 }}
+              class="pagination-btn pagination-prev" 
+              (click)="previousPage()"
+              [disabled]="currentPage === 1"
+              [title]="'Página anterior'">
+              <i class="fas fa-chevron-left"></i>
+              <span>Anterior</span>
             </button>
-          </div>
+            
+            <!-- Números de página -->
+            <div class="pagination-numbers">
+              <button 
+                *ngFor="let page of pageNumbers"
+                class="pagination-number"
+                [class.active]="currentPage === page && !isEllipsis(page)"
+                [class.ellipsis]="isEllipsis(page)"
+                [disabled]="isEllipsis(page)"
+                (click)="!isEllipsis(page) && goToPage(page)"
+                [title]="!isEllipsis(page) ? 'Ir a página ' + page : ''">
+                <span *ngIf="!isEllipsis(page)">{{ page }}</span>
+                <span *ngIf="isEllipsis(page)">...</span>
+              </button>
+            </div>
+            
+            <!-- Botón Next -->
+            <button 
+              class="pagination-btn pagination-next" 
+              (click)="nextPage()"
+              [disabled]="currentPage === totalPages"
+              [title]="'Página siguiente'">
+              <span>Siguiente</span>
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </nav>
           
-          <button 
-            class="pagination-btn" 
-            (click)="nextPage()"
-            [disabled]="currentPage === totalPages">
-            Next
-            <i class="fas fa-chevron-right"></i>
-          </button>
+          <!-- Información de página -->
+          <div class="pagination-info">
+            <span>Página {{ currentPage }} de {{ totalPages }}</span>
+            <span class="separator">•</span>
+            <span>{{ filteredPosts.length }} artículo{{ filteredPosts.length !== 1 ? 's' : '' }} en total</span>
+          </div>
         </div>
       </main>
     </div>
