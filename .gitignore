@@ -6,10 +6,9 @@
 /out-tsc
 # Only exists if Bazel was run
 /bazel-out
-
+.angular/
 # dependencies
 /node_modules
-
 # profiling files
 chrome-profiler-events*.json
 
@@ -42,3 +41,4 @@ yarn-error.log
 .DS_Store
 Thumbs.db
 /.angular/cache/
+.angular/cache/
