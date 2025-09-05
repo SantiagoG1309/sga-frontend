@@ -1,6 +1,6 @@
-import { Component, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, Router, NavigationEnd } from '@angular/router';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
 @Component({
@@ -13,17 +13,19 @@ import { filter } from 'rxjs/operators';
 export class HeaderComponent implements OnInit {
   isMobileMenuOpen = false;
   isLoggedIn = false;
-
-  constructor(private router: Router) {
-    this.isLoggedIn = !!localStorage.getItem('user');
-    this.router.events.subscribe(() => {
-      this.isLoggedIn = !!localStorage.getItem('user');
-    });
+  isAdmin = false;
   currentRoute = '';
   scrollY = 0;
   isHovered = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+    this.isLoggedIn = !!localStorage.getItem('user');
+    this.isAdmin = localStorage.getItem('role') === 'admin';
+    this.router.events.subscribe(() => {
+      this.isLoggedIn = !!localStorage.getItem('user');
+      this.isAdmin = localStorage.getItem('role') === 'admin';
+    });
+  }
 
   @HostListener('window:scroll', ['$event'])
   onScroll() {
@@ -37,7 +39,6 @@ export class HeaderComponent implements OnInit {
     ).subscribe((event: NavigationEnd) => {
       this.currentRoute = event.url;
     });
-    
     // Set initial route
     this.currentRoute = this.router.url;
   }
@@ -68,7 +69,6 @@ export class HeaderComponent implements OnInit {
     if (this.isHovered) {
       return 'linear-gradient(135deg, #024A70 0%, #1a365d 50%, #024A70 100%)';
     }
-    
     const opacity = this.backgroundOpacity;
     return `linear-gradient(135deg, rgba(2, 74, 112, ${opacity}) 0%, rgba(26, 54, 93, ${opacity}) 50%, rgba(2, 74, 112, ${opacity}) 100%)`;
   }
@@ -88,14 +88,17 @@ export class HeaderComponent implements OnInit {
   closeMobileMenu() {
     this.isMobileMenuOpen = false;
   }
+
   logout() {
-    localStorage.removeItem('user');
-    this.isLoggedIn = false;
-    this.router.navigate(['/login']);
-  // Navigate to home and scroll to specific section
+  localStorage.removeItem('user');
+  localStorage.removeItem('role');
+  this.isLoggedIn = false;
+  this.isAdmin = false;
+  this.router.navigate(['/login']);
+  }
+
   navigateToSection(sectionId: string) {
     this.closeMobileMenu();
-    
     // If we're not on home page, navigate to home first
     if (this.router.url !== '/home' && this.router.url !== '/') {
       this.router.navigate(['/home']).then(() => {
