@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Component } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -11,6 +11,14 @@ import { RouterLink } from '@angular/router';
 })
 export class HeaderComponent {
   isMobileMenuOpen = false;
+  isLoggedIn = false;
+
+  constructor(private router: Router) {
+    this.isLoggedIn = !!localStorage.getItem('user');
+    this.router.events.subscribe(() => {
+      this.isLoggedIn = !!localStorage.getItem('user');
+    });
+  }
 
   toggleMobileMenu() {
     this.isMobileMenuOpen = !this.isMobileMenuOpen;
@@ -18,5 +26,11 @@ export class HeaderComponent {
 
   closeMobileMenu() {
     this.isMobileMenuOpen = false;
+  }
+
+  logout() {
+    localStorage.removeItem('user');
+    this.isLoggedIn = false;
+    this.router.navigate(['/login']);
   }
 }

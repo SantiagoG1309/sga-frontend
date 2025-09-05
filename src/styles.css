@@ -1,3 +1,78 @@
+@media (max-width: 768px) {
+  .mobile-nav {
+    border-radius: 0 0 32px 32px;
+    box-shadow: 0 8px 24px rgba(2,74,112,0.12);
+    background: var(--dark-blue);
+    margin-top: -8px;
+    padding-top: 16px;
+    transition: margin-top 0.3s, border-radius 0.3s;
+  }
+  .mobile-nav.active {
+    margin-top: 0;
+    border-radius: 0 0 32px 32px;
+    border-top: none;
+    padding-top: 32px;
+  }
+}
+@media (max-width: 768px) {
+  .navbar-brand.mobile-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 12px;
+  }
+  .brand-logo {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    width: 100%;
+    margin-left: 30px;
+  }
+  .brand-text {
+    text-align: center;
+    width: 100%;
+  }
+  .mobile-nav {
+    border-radius: 32px 32px 32px 32px;
+    box-shadow: 0 8px 24px rgba(2,74,112,0.12);
+    background: var(--dark-blue);
+    margin-top: -24px;
+    padding-top: 32px;
+    border-top: 4px solid #024A70;
+  }
+}
+/* Centrado de logo y textos solo en móvil */
+@media (max-width: 768px) {
+  .navbar-brand.mobile-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 12px;
+  }
+  .brand-logo {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    width: 100%;
+  }
+  .brand-text {
+    text-align: center;
+    width: 100%;
+  }
+  .mobile-nav {
+    border-radius: 0 0 32px 32px;
+    box-shadow: 0 8px 24px rgba(2,74,112,0.12);
+    background: var(--dark-blue);
+    margin-top: -8px;
+    padding-top: 16px;
+  }
+}
 /* Global Styles for Pravda Saga Law Firm Website */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
