@@ -13,14 +13,17 @@ import { filter } from 'rxjs/operators';
 export class HeaderComponent implements OnInit {
   isMobileMenuOpen = false;
   isLoggedIn = false;
+  isAdmin = false;
   currentRoute = '';
   scrollY = 0;
   isHovered = false;
 
   constructor(private router: Router) {
     this.isLoggedIn = !!localStorage.getItem('user');
+    this.isAdmin = localStorage.getItem('role') === 'admin';
     this.router.events.subscribe(() => {
       this.isLoggedIn = !!localStorage.getItem('user');
+      this.isAdmin = localStorage.getItem('role') === 'admin';
     });
   }
 
@@ -87,9 +90,11 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    localStorage.removeItem('user');
-    this.isLoggedIn = false;
-    this.router.navigate(['/login']);
+  localStorage.removeItem('user');
+  localStorage.removeItem('role');
+  this.isLoggedIn = false;
+  this.isAdmin = false;
+  this.router.navigate(['/login']);
   }
 
   navigateToSection(sectionId: string) {

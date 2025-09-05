@@ -30,7 +30,7 @@
           <li><a href="about" class="nav-link">Nosotros</a></li>
           <li *ngIf="!isLoggedIn"><a routerLink="/login" class="nav-link">Cartera</a></li>
           <!-- <li><a routerLink="/register" class="nav-link">Registro</a></li> -->
-          <!-- <li><a routerLink="/admin" class="nav-link">Panel Administrador</a></li> -->
+          <li *ngIf="isLoggedIn && isAdmin"><a routerLink="/admin" class="nav-link">Panel Administrador</a></li>
           <li *ngIf="isLoggedIn"><button class="nav-link" (click)="logout()">Cerrar sesión</button></li>
           <!-- BORRAR PANEL DE ADMINISTRADOR A FUTURO - SOLO VALIDO AL INICIAR SESION (2 Roles Admin Principal-No admin) -->
           <li><a routerLink="/sentences" class="nav-link">Sentencias</a></li>
