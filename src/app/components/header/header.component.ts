@@ -1,6 +1,6 @@
-import { Component, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, Router, NavigationEnd } from '@angular/router';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
 @Component({
@@ -13,14 +13,19 @@ import { filter } from 'rxjs/operators';
 export class HeaderComponent implements OnInit {
   isMobileMenuOpen = false;
   isLoggedIn = false;
+
+  isAdmin = false;
+
   currentRoute = '';
   scrollY = 0;
   isHovered = false;
 
   constructor(private router: Router) {
     this.isLoggedIn = !!localStorage.getItem('user');
+    this.isAdmin = localStorage.getItem('role') === 'admin';
     this.router.events.subscribe(() => {
       this.isLoggedIn = !!localStorage.getItem('user');
+      this.isAdmin = localStorage.getItem('role') === 'admin';
     });
   }
 
@@ -87,9 +92,12 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
+
     localStorage.removeItem('user');
     this.isLoggedIn = false;
     this.router.navigate(['/login']);
+
+
   }
 
   navigateToSection(sectionId: string) {
