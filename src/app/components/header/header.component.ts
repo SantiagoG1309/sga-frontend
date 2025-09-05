@@ -12,6 +12,13 @@ import { filter } from 'rxjs/operators';
 })
 export class HeaderComponent implements OnInit {
   isMobileMenuOpen = false;
+  isLoggedIn = false;
+
+  constructor(private router: Router) {
+    this.isLoggedIn = !!localStorage.getItem('user');
+    this.router.events.subscribe(() => {
+      this.isLoggedIn = !!localStorage.getItem('user');
+    });
   currentRoute = '';
   scrollY = 0;
   isHovered = false;
@@ -81,7 +88,10 @@ export class HeaderComponent implements OnInit {
   closeMobileMenu() {
     this.isMobileMenuOpen = false;
   }
-
+  logout() {
+    localStorage.removeItem('user');
+    this.isLoggedIn = false;
+    this.router.navigate(['/login']);
   // Navigate to home and scroll to specific section
   navigateToSection(sectionId: string) {
     this.closeMobileMenu();

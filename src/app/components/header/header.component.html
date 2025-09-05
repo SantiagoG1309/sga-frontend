@@ -9,8 +9,9 @@
     <div class="container">
       <div class="navbar-content">
         <!-- Logo/Brand -->
-        <div class="navbar-brand">
+        <div class="navbar-brand mobile-center">
           <a routerLink="/home" class="brand-logo">
+
             <div class="logo-icon">
               <i class="fas fa-balance-scale"></i>
             </div>
@@ -25,10 +26,18 @@
         <ul class="navbar-nav desktop-nav">
           <li><a routerLink="/home" class="nav-link">Inicio</a></li>
           <li><a routerLink="/blog" class="nav-link">Blog</a></li>
-          <li><a (click)="navigateToSection('about')" class="nav-link" style="cursor: pointer;">Nosotros</a></li>
-          <li><a (click)="navigateToSection('services')" class="nav-link" style="cursor: pointer;">Cartera</a></li>
+
+          <li><a href="about" class="nav-link">Nosotros</a></li>
+          <li *ngIf="!isLoggedIn"><a routerLink="/login" class="nav-link">Cartera</a></li>
+          <!-- <li><a routerLink="/register" class="nav-link">Registro</a></li> -->
+          <!-- <li><a routerLink="/admin" class="nav-link">Panel Administrador</a></li> -->
+          <li *ngIf="isLoggedIn"><button class="nav-link" (click)="logout()">Cerrar sesión</button></li>
+          <!-- BORRAR PANEL DE ADMINISTRADOR A FUTURO - SOLO VALIDO AL INICIAR SESION (2 Roles Admin Principal-No admin) -->
           <li><a routerLink="/sentences" class="nav-link">Sentencias</a></li>
         </ul>
+
+
+
 
         <!-- Mobile Menu Button -->
         <button class="mobile-menu-btn" (click)="toggleMobileMenu()">
@@ -38,12 +47,14 @@
       </div>
 
       <!-- Mobile Navigation -->
-      <ul class="mobile-nav" [class.active]="isMobileMenuOpen">
-        <li><a routerLink="/home" class="nav-link" (click)="closeMobileMenu()">Inicio</a></li>
-        <li><a routerLink="/blog" class="nav-link" (click)="closeMobileMenu()">Blog</a></li>
-        <li><a (click)="navigateToSection('about')" class="nav-link" style="cursor: pointer;">Nosotros</a></li>
-        <li><a (click)="navigateToSection('services')" class="nav-link" style="cursor: pointer;">Cartera</a></li>
+
+  <ul class="mobile-nav" [ngClass]="{'active': isMobileMenuOpen}">
+        <li><a routerLink="/home" class="nav-link text-center" (click)="closeMobileMenu()">Inicio</a></li>
+        <li><a routerLink="/blog" class="nav-link text-center" (click)="closeMobileMenu()">Blog</a></li>
+        <li><a href="/about" class="nav-link text-center" (click)="closeMobileMenu()">Nosotros</a></li>
+  <li *ngIf="!isLoggedIn"><a routerLink="/login" class="nav-link text-center" (click)="closeMobileMenu()">Cartera</a></li>
         <li><a routerLink="/sentences" class="nav-link" (click)="closeMobileMenu()">Sentencias</a></li>
+
       </ul>
     </div>
   </nav>

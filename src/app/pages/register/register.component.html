@@ -1,0 +1,37 @@
+<section class="section bg-light fade-in">
+  <div style="height:80px;"></div>
+  <div class="container flex-center">
+    <div class="card" style="max-width: 400px; width: 100%;">
+      <div class="text-center">
+        <i class="fas fa-user-plus" style="font-size: 2.5rem; color: var(--primary-gold); margin-bottom: 1rem;"></i>
+        <h2 class="text-dark" style="margin-bottom: 1.5rem;">Registro de Usuario</h2>
+      </div>
+      <form (ngSubmit)="onSubmit()" autocomplete="off">
+        <div class="form-group">
+          <label for="name" class="form-label text-center" style="display:block;">Nombre</label>
+          <input type="text" id="name" name="name" class="form-input" required [(ngModel)]="name"/>
+        </div>
+        <div class="form-group">
+          <label for="email" class="form-label text-center" style="display:block;">Correo electrónico</label>
+          <input type="email" id="email" name="email" class="form-input" required [(ngModel)]="email"/>
+        </div>
+        <div class="form-group">
+          <label for="password" class="form-label text-center" style="display:block;">Contraseña</label>
+          <input type="password" id="password" name="password" class="form-input" required [(ngModel)]="password"/>
+        </div>
+        <div class="form-group">
+          <label for="role" class="form-label text-center" style="display:block;">Rol</label>
+          <select id="role" name="role" class="form-input" required [(ngModel)]="role">
+            <option value="admin">Admin</option>
+            <option value="subadmin">SubAdmin</option>
+          </select>
+        </div>
+        <div class="flex-center">
+          <button type="submit" class="btn btn-primary flex-center" style="width: 100%; margin-top: 8px; justify-content: center; align-items: center;">Registrar</button>
+        </div>
+        <div *ngIf="errorMsg" class="text-center" style="color: #c0392b; margin-top: 12px;">{{ errorMsg }}</div>
+        <div *ngIf="successMsg" class="text-center" style="color: #27ae60; margin-top: 12px;">{{ successMsg }}</div>
+      </form>
+    </div>
+  </div>
+</section>
