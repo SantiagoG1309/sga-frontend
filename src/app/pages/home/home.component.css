@@ -1,18 +1,18 @@
 /* Home page specific styles */
 .home-page {
   min-height: 100vh;
-  padding-top: 8rem; /* Space for fixed navbar */
+  padding-top: 0; /* No padding since navbar is positioned lower */
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .home-page {
-    padding-top: 7rem;
+    padding-top: 0;
   }
 }
 
 @media (max-width: 480px) {
   .home-page {
-    padding-top: 6rem;
+    padding-top: 0;
   }
 }

@@ -1,27 +1,52 @@
 .header {
   position: fixed;
-  top: 0;
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000;
   background: linear-gradient(135deg, #024A70 0%, #1a365d 50%, #024A70 100%);
   box-shadow: 0 4px 25px rgba(0, 0, 0, 0.15);
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
   width: 80%;
   max-width: 1000px;
   border-radius: 0 0 100px 100px;
-  margin-top: 0;
-  backdrop-filter: blur(10px);
 }
 
+/* Smooth transition when scrolled and blurred */
+.header.scrolled {
+  backdrop-filter: blur(15px);
+  background: linear-gradient(135deg, rgba(2, 74, 112, 0.8) 0%, rgba(26, 54, 93, 0.8) 50%, rgba(2, 74, 112, 0.8) 100%);
+  transition: backdrop-filter 0.5s ease-in-out, background 0.5s ease-in-out;
+}
+
+/* Clear blur on hover */
+.header:hover {
+  backdrop-filter: blur(0px) !important;
+  background: linear-gradient(135deg, #024A70 0%, #1a365d 50%, #024A70 100%) !important;
+  transition: backdrop-filter 0.3s ease-in-out, background 0.3s ease-in-out;
+}
+
+/* Home page navbar - positioned at top */
+.header-home {
+  top: 0;
+}
+
+/* Other pages navbar - positioned at top to avoid covering content */
+.header-pages {
+  top: 0;
+}
+
+/* Navbar content smooth transitions */
 .navbar {
   padding: 0.75rem 1.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .container {
   max-width: 100%;
   margin: 0;
   padding: 0;
+  transition: all 0.3s ease;
 }
 
 .navbar-content {
@@ -29,6 +54,7 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  transition: all 0.3s ease;
 }
 
 .navbar-brand {
@@ -44,6 +70,15 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+}
+
+.brand-logo:hover {
+  text-decoration: none;
+  color: inherit;
+  transform: scale(1.02);
 }
 
 .logo-icon {
@@ -112,7 +147,7 @@
   color: white;
   font-weight: 400;
   font-size: 0.9rem;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   padding: 0.4rem 0.8rem;
   opacity: 0.95;
@@ -215,6 +250,14 @@
     border-radius: 0 0 80px 80px;
   }
   
+  .header-home {
+    top: 0;
+  }
+  
+  .header-pages {
+    top: 0;
+  }
+  
   .desktop-nav {
     display: none;
   }
@@ -254,6 +297,14 @@
   .header {
     width: 90%;
     border-radius: 0 0 60px 60px;
+  }
+  
+  .header-home {
+    top: 0;
+  }
+  
+  .header-pages {
+    top: 0;
   }
   
   .navbar {
